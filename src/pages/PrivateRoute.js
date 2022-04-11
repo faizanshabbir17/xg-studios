@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { getLocalData } from "../utils/localStorage";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const [first, setfirst] = useState(true);
-  const logIn = localStorage.getItem("loggedIn");
-  console.log("logIn", typeof logIn);
+  const logIn = getLocalData("loggedIn");
 
   return (
     <Route
@@ -18,12 +12,10 @@ function PrivateRoute({ component: Component, ...rest }) {
       render={(props) =>
         logIn === "true" ? (
           <>
-            {console.log("true")}
             <Component {...props}></Component>
           </>
         ) : (
           <>
-            {console.log("false")}
             <Redirect to="/" />
           </>
         )
