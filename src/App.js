@@ -19,6 +19,7 @@ function App() {
 
   useEffect(() => {
     let isLoggedIn = localStorage.getItem("loggedIn");
+    console.log("in useEffect");
     if (isLoggedIn === "true") {
       fcl.currentUser().subscribe((user) => setUser({ ...user }));
     } else {
